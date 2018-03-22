@@ -20,5 +20,12 @@ summary(landslides)
 
 # Same for storm_name, local_description, photos_link
 landslides$storm_name <- NULL
-landslides$local_description <- NULL
+landslides$location_description <- NULL
 landslides$photos_link <- NULL
+
+summary(landslides)
+
+
+# Now, let's delete the irrelevant columns (hazard_type, source_name, source_link, cat_src,
+# cat_id, adminname1, adminname2, changeset_id)
+landslides$
