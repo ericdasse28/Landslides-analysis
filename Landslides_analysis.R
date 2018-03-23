@@ -102,3 +102,5 @@ plotmap("United States", zoom = 15, maptype = "satellite")
 
 
 # Collecting the landslides cases only from United States
+landslides.US <- subset(landslides, landslides$countrycode == "US")
+head(landslides.US)
