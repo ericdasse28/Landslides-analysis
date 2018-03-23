@@ -57,22 +57,31 @@ summary(landslides)
 
 # The column "countryname" and "country" basically contain the same information
 # Except the column "countryname" doesn't contain contains blank cells
-# Thus, we dump the column "country"
-landslides$country <- NULL
+# Thus, we replace the column "country" by "countryname" and dump "countryname"
+landslides$country <- as.character(landslides$countryname)
+landslides$countryname <- NULL
+summary(landslides)
 
-# Renaming values for more convenience
 
+# Renamings
+landslides$landslide_type <- ifelse(landslides$landslide_type == "landslide",
+                                    "Landslide", landslides$landslide_type)
 
 
 ##################
 # VISUALIZATION #
 ##################
 
-# Plot of number of number landslides cases per city
+# Plot of number of number landslides cases per country
 library(ggplot2)
 
-qplot(landslides$)
+win.graph(1500, 800, 1000)
+qplot(as.character(landslides$countrycode), xlab = "Country Code",
+      main = "Landslides per country") +
+      scale_y_continuous("Number of landlslides")
 
 
 # Plot with respect to the types of landslides
-qplot(landslides$)
+qplot(landslides$landslide_type, xlab = "Landslide type",
+      main = "Frequency of different types of landslides across the world") +
+  scale_y_continuous("Frequency")
