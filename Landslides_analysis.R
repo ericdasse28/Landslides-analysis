@@ -94,13 +94,22 @@ qplot(landslides$landslide_type, xlab = "Landslide type",
 # Geographical locations
 library(RgoogleMaps)
 library(sp)
-library(maps)
+library(ggmap)
 
-
+us_map <- get_map(location = "United States",
+                  maptype = "satellite",
+                  zoom = 10)
 win.graph(800, 600, 10)
-plotmap("United States", zoom = 15, maptype = "satellite")
+madPoints <- ggmap(us_map) + geom_point(aes(x = landslides.US$longitude,
+                                            y = landslides.US$latitude),
+                                        color = "red",
+                                        alpha = 0.1, size = 1, data = landslides.US)
+plot(madPoints)
 
 
 # Collecting the landslides cases only from United States
 landslides.US <- subset(landslides, landslides$countrycode == "US")
 head(landslides.US)
+
+col = as.numeric(landslides$landslide_type)
+plotmap(landslides.US$latitude, landslides.US$longitude, zoom = 3, col = "red")
