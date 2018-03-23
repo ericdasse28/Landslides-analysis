@@ -96,4 +96,9 @@ library(RgoogleMaps)
 library(sp)
 library(maps)
 
-us_map <- plotmap("United States", zoom = 10)
+
+win.graph(800, 600, 10)
+plotmap("United States", zoom = 15, maptype = "satellite")
+
+
+# Collecting the landslides cases only from United States
