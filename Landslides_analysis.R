@@ -55,18 +55,23 @@ landslides <- subset(landslides, !is.na(landslides$distance))
 
 summary(landslides)
 
+# The column "countryname" and "country" basically contain the same information
+# Except the column "countryname" doesn't contain contains blank cells
+# Thus, we dump the column "country"
+landslides$country <- NULL
 
 # Renaming values for more convenience
-landslides$landslide_type <- ifelse(landslides$landslide_type %in%
-                                      c('land'))
+
 
 
 ##################
-# VISUA+LIZATION #
+# VISUALIZATION #
 ##################
 
 # Plot of number of number landslides cases per city
 library(ggplot2)
+
+qplot(landslides$)
 
 
 # Plot with respect to the types of landslides
