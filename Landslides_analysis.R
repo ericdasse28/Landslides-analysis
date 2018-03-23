@@ -45,6 +45,7 @@ summary(landslides)
 # There are several rows with missing information, starting the ones in the "fatalities" and
 # "injuries" columns
 landslides <- subset(landslides, !is.na(landslides$fatalities))
+
 landslides <- subset(landslides, !is.na(landslides$injuries))
 
 summary(landslides)
@@ -65,8 +66,10 @@ summary(landslides)
 
 # Renamings
 landslides$landslide_type <- ifelse(landslides$landslide_type == "landslide",
-                                    "Landslide", landslides$landslide_type)
+                                    "Landslide", as.character(landslides$landslide_type))
 
+landslides$landslide_type <- ifelse(landslides$landslide_type == "mudslide",
+                                    "Mudslide", as.character(landslides$landslide_type))
 
 ##################
 # VISUALIZATION #
@@ -75,7 +78,7 @@ landslides$landslide_type <- ifelse(landslides$landslide_type == "landslide",
 # Plot of number of number landslides cases per country
 library(ggplot2)
 
-win.graph(1500, 800, 1000)
+win.graph(800, 600, 1000)
 qplot(as.character(landslides$countrycode), xlab = "Country Code",
       main = "Landslides per country") +
       scale_y_continuous("Number of landlslides")
@@ -85,3 +88,12 @@ qplot(as.character(landslides$countrycode), xlab = "Country Code",
 qplot(landslides$landslide_type, xlab = "Landslide type",
       main = "Frequency of different types of landslides across the world") +
   scale_y_continuous("Frequency")
+
+
+
+# Geographical locations
+library(RgoogleMaps)
+library(sp)
+library(maps)
+
+us_map <- plotmap("United States", zoom = 10)
