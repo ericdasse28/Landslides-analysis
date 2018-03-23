@@ -27,5 +27,15 @@ summary(landslides)
 
 
 # Now, let's delete the irrelevant columns (hazard_type, source_name, source_link, cat_src,
-# cat_id, adminname1, adminname2, changeset_id)
-landslides$
+# cat_id, adminname1, adminname2, changeset_id, version)
+landslides$hazard_type <- NULL
+landslides$source_name <- NULL
+landslides$source_link <- NULL
+landslides$cat_src <- NULL
+landslides$cat_id <- NULL
+landslides$adminname1 <- NULL
+landslides$adminname2 <- NULL
+landslides$changeset_id <- NULL
+landslides$version <- NULL
+
+summary(landslides)
